@@ -7,11 +7,14 @@
 
 ## Field calibration
 
-First live run (AI pentest agent, fully black-box, 2026-11-20):
+First live run (AI pentest agent, informed-class — the agent had read the
+build-side mechanism notes during the run; 2026-11-20):
 
-- **First blood 18'36"** wall clock from first shot to flag (19'08" from
-  engagement start to flag).
-- Route taken: the *black-box* variant — upload-progress raw write surface,
+- **Solve time: ~2 h 55 m active** (3 h 46 m wall across two harness restarts).
+  The `18'36"` figure seen in earlier notes measured only the final RCE segment
+  after the mechanism was already understood — recorded here for honesty, not
+  as the solve time.
+- Route taken: the *no-ptrace* variant — upload-progress raw write surface,
   cleanup short-write preserving the old tail, `__wakeup` firing even in
   decode-failure state. No container access, no ptrace.
 - Costliest trap: a red-herring window where the agent believed a `|` inside
@@ -41,4 +44,5 @@ solvers miss until the control box refuses to break.
 ## Time budget
 
 - Experienced human, source-visible: 2–4 h.
-- AI agent, black-box, class hint: 20–60 min (observed: 18'36").
+- AI agent, informed (mechanism known mid-run): ~3 h active. A truly blind
+  black-box solve time is not yet measured.
