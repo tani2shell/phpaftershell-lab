@@ -9,7 +9,7 @@
   两容器唯一功能差分是 ini 里一行开关）。
 - **重置**：`./RESET.sh`（可复制 `.env.example` 为 `.env` 自换旗值）。
 - **旗子**：一面（容器内 `/flag`，随题解公开）。
-- **难度**：4/5（经 AI 渗透靶手黑盒首破标定，用时 18'36"，见 `DIFFICULTY.md`）。
-- 题面（零泄底）在 `CHALLENGE.md`，完整题解（含黑盒首破链）在 `SOLUTION.md`。
+- **难度**：4/5（经 AI 渗透靶手标定——informed 级、净实战约 3 小时，见 `DIFFICULTY.md`）。
+- 题面（零泄底）在 `CHALLENGE.md`，完整题解（含无 ptrace 实战链）在 `SOLUTION.md`。
 - `exploit.py` + `zap` 是作者的确定性自证工具（需 docker exec，arm64），
   黑盒解题不需要。
