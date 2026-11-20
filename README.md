@@ -1,6 +1,6 @@
 # phpaftershell-lab
 
-![battle-tested](https://img.shields.io/badge/battle%20tested-first%20blood%20by%20an%20AI%20pentest%20agent%20in%2019%20min-brightgreen)
+![battle-tested](https://img.shields.io/badge/battle%20tested-broken%20end--to--end%20by%20an%20AI%20pentest%20agent-brightgreen)
 Difficulty: **4/5 (calibrated)** · Docker Compose · PHP 8.4
 
 > PHP session-race + deserialization RCE practice lab — kill a worker
@@ -70,8 +70,8 @@ you never need the source at all. The bundled `exploit.py` is the *author's*
 deterministic proof: it `docker exec`s into the container and uses `zap`
 (a small ptrace harness) to kill the prefork child in exactly the right
 window. Real solvers get there without ptrace — `SOLUTION.md` documents both
-routes, including the black-box one an AI pentest agent used for first
-blood in ~19 minutes. `exploit.py`/`zap` are optional, arm64-tuned
+routes, including the no-ptrace one an AI pentest agent actually used to take
+the flag (informed-class calibration run, ~3 h active solving). `exploit.py`/`zap` are optional, arm64-tuned
 furniture for the race window; the target itself is plain HTTP.
 
 ## Reset
@@ -83,5 +83,5 @@ from this repo.
 ## License / series
 
 MIT. Part of the `<target>-lab` pentest series — targets built by a human
-range author and field-calibrated by an AI pentest agent (first blood and
-timing data in `DIFFICULTY.md`).
+range author and field-calibrated by an AI pentest agent (calibration run data
+in `DIFFICULTY.md`).
