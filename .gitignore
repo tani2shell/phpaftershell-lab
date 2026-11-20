@@ -1,0 +1,9 @@
+# local artifacts — never commit
+# NOTE: flags/flag.txt ships as a fixed lab value — deliberately NOT ignored.
+.env
+*.log
+*.bak
+__pycache__/
+*.pyc
+.DS_Store
+uploads/

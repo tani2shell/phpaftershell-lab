@@ -1,0 +1,65 @@
+# phpaftershell-lab — CVE-2026-126714 local repro, A/B pair
+# web        = :19042  vulnerable PHP 8.4.27 (feature explicitly ON, classic ops state)
+# webpatched = :19043  patched PHP 8.4.28 semantics (upload progress OFF by default)
+# The A/B difference is carried entirely by config vs config-patched
+# (session.upload_progress.enabled) through the CONFIG_DIR build arg.
+services:
+  web:
+    container_name: phpaftershell-web-1
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.4.27"
+    ports:
+      - "0.0.0.0:19042:80"
+    cpus: "1.0"
+    mem_limit: 320m
+    cap_add:
+      - SYS_PTRACE            # only for the bundled exploit harness (see README)
+    volumes:
+      - ./flags/flag.txt:/flag:ro
+      - type: tmpfs
+        target: /var/www/html/reports
+        tmpfs:
+          mode: 01777
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1/index.php"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+    networks:
+      - lab
+  webpatched:
+    container_name: phpaftershell-webpatched-1
+    build:
+      context: .
+      args:
+        PHP_VERSION: "8.4.28"
+        CONFIG_DIR: "config-patched"
+    ports:
+      - "0.0.0.0:19043:80"
+    cpus: "1.0"
+    mem_limit: 320m
+    cap_add:
+      - SYS_PTRACE            # only for the bundled exploit harness (see README)
+    volumes:
+      - ./flags/flag.txt:/flag:ro
+      - type: tmpfs
+        target: /var/www/html/reports
+        tmpfs:
+          mode: 01777
+    healthcheck:
+      test: ["CMD", "curl", "-fsS", "http://127.0.0.1/index.php"]
+      interval: 10s
+      timeout: 5s
+      retries: 30
+    restart: unless-stopped
+    networks:
+      - lab
+networks:
+  lab:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 10.17.91.0/24
