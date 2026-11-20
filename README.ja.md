@@ -9,7 +9,7 @@
   デフォルト OFF。両イメージの機能差分は ini のスイッチ 1 行のみ）。
 - **リセット**: `./RESET.sh`（`.env.example` を `.env` にコピーすればフラグ値の自前差し替え可）。
 - **フラグ**: 1 枚（コンテナ内 `/flag`。 walkthrough と同時に公開）。
-- **難易度**: 4/5（AI ペンテストエージェントのブラックボックス初破 18'36" で較正、`DIFFICULTY.md` 参照）。
-- 問題文（ネタバレなし）は `CHALLENGE.md`、完全解答（初破のブラックボックス経路含む）は `SOLUTION.md`。
+- **難易度**: 4/5（AI ペンテストエージェント較正：informed級・実働約3時間、`DIFFICULTY.md` 参照）。
+- 問題文（ネタバレなし）は `CHALLENGE.md`、完全解答（エージェント実戦の非ptrace経路含む）は `SOLUTION.md`。
 - `exploit.py` + `zap` は作者の決定論的セルフプルーフ用（docker exec 必要、arm64）。
   ブラックボックス攻略には不要。
