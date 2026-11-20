@@ -97,10 +97,10 @@ right child via `/proc/net/tcp` → socket inode → fd owner, and lands the
 chain in ~10 s per attempt (40-attempt budget). It is a *self-proof* tool,
 not required for play (Linux/arm64 binary; the race itself is portable).
 
-### (b) Black-box — no ptrace, no killing anyone (first-blood route)
+### (b) No-ptrace route — no killing anyone (the route the AI agent used)
 
-An AI pentest agent took the portal in ~19 minutes without ever touching
-the container. Key observations that replace the kill:
+An AI pentest agent took the portal this way without ever touching the
+container (informed-class run, ~3 h active). Key observations that replace the kill:
 
 - the **cleanup path** of `upload_progress` (when the request ends without
   completing) performs a *short* session write **without truncating** —
